@@ -2,4 +2,10 @@
 # all changes will be overwritten
 [default]
 region={{ aws_region }}
-output=json
+output={{ aws_output }}
+{% for profile in aws_profiles %}
+
+[profile {{ profile.name }}]
+region = {{ profile.region }}
+output = json
+{% endfor %}

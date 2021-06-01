@@ -6,6 +6,11 @@ output={{ aws_output }}
 {% for profile in aws_profiles %}
 
 [profile {{ profile.name }}]
-region = {{ profile.region }}
 output = json
+{% for k in ["region", "role_arn", "access_key", "secret_key", "source_profile"] %}
+{% if profile[k] is defined %}
+{{ k }} = {{ profile[k] }}
+{% endif %}
+{% endfor %}
+
 {% endfor %}

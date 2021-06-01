@@ -5,4 +5,6 @@ aws_profiles: [] # Format can be a list
 #   region: __PROFILE_REGION__
 #   access_key: __PROFILE_ACCESS_KEY__
 #   secret_key: __PROFILE_SECRET_KEY__
+#   source_profile:
+#   role_arn:
 ...

@@ -1,0 +1,22 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+
+  - name: Run awscli
+    ansible.builtin.shell: aws --version
+    args:
+      executable: /bin/bash
+    register: awscli_status
+
+  - name: Dump awscli status
+    ansible.builtin.debug:
+      var: awscli_status
+
+  - name: Assert awscli returns its version
+    ansible.builtin.assert:
+      that: awscli_status.stdout is search('aws-cli')
+...

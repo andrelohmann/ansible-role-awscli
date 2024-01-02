@@ -1,8 +1,10 @@
 ---
-- hosts: localhost
+- hosts: all
   become: true
   become_method: sudo
 
   roles:
+  - andrelohmann.root_colored_prompt
   - ansible-role-awscli
+
 ...

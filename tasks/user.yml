@@ -1,11 +1,12 @@
 ---
+
 - name: Create the .aws direcotry for user vagrant
   ansible.builtin.file:
     path: "{{ (aws_user == 'root') | ternary('/root/.aws', '/home/' + aws_user + '/.aws') }}"
     state: directory
     owner: "{{ aws_user }}"
     group: "{{ aws_user }}"
-    mode: 0755
+    mode: "0755"
 
 - name: Create aws config
   ansible.builtin.template:
@@ -13,7 +14,7 @@
     dest: "{{ (aws_user == 'root') | ternary('/root/.aws/config', '/home/' + aws_user + '/.aws/config') }}"
     owner: "{{ aws_user }}"
     group: "{{ aws_user }}"
-    mode: 0600
+    mode: "0600"
 
 - name: Create aws credentials
   ansible.builtin.template:
@@ -21,5 +22,6 @@
     dest: "{{ (aws_user == 'root') | ternary('/root/.aws/credentials', '/home/' + aws_user + '/.aws/credentials') }}"
     owner: "{{ aws_user }}"
     group: "{{ aws_user }}"
-    mode: 0600
+    mode: "0600"
+
 ...

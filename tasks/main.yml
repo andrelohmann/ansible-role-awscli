@@ -13,10 +13,14 @@
     - python3-pip
     - jq
 
+- name: Set pip3 option args based on the distribution release
+  ansible.builtin.set_fact:
+    pip_extra_args: "--upgrade{% if ansible_distribution_release == 'noble' %} --break-system-packages{% endif %}"
+
 - name: Install required python packages
   ansible.builtin.pip:
     name: "{{ required_python_packages }}"
-    extra_args: --upgrade
+    extra_args: "{{ pip_extra_args }}"
     executable: pip3
   vars:
     required_python_packages:

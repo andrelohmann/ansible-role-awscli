@@ -11,6 +11,7 @@
     args:
       executable: /bin/bash
     register: awscli_status
+    changed_when: false
 
   - name: Dump awscli status
     ansible.builtin.debug:
